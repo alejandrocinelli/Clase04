@@ -1,7 +1,38 @@
+const express = require('express');
 const Contenedor = require('./contenedor.js');
+const contenedor = new Contenedor('./productos.txt');
+const app = express();
+const PORT = 8080;
+
+app.get('/', (req, res) => {
+    
+    res.send({ message: 'hola Inicio... ' });
+
+
+});
+
+app.get('/productos', async (req, res) => {
+    
+    res.send(await contenedor.getAll());
+
+});
+
+app.get('/fyh', (req, res) => {
+     res.send('<h3>Fecha y hora: ' + new Date() + '</h3>');
+});
+
+app.get('/productosRandom', async (req, res) => {
+    res.send(await contenedor.getRandom())
+});
+
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
+
+
 
 // datos 
-
+/* 
 const item1 = {
     title: "Escuadra",
     price: 123.45,
@@ -24,9 +55,9 @@ const item4 = {
     title: "Escuadra",
     price: 12343,
     thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-}
+}*/
 
-async function main() {
+/*async function main() {
 
     // instanciamos el contenedor 
     const contenedor = new Contenedor('./productos.txt');
@@ -68,6 +99,6 @@ async function main() {
     let borrado2 = await contenedor.getAll();
     console.log(borrado2);
 
-}
+}*/
 
-main();
+// main();

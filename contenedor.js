@@ -92,7 +92,16 @@ class Contenedor {
             console.log('Error en deleteById', error);
         }
     }
-   
+
+    // funcion ramdom para obtener un objeto al azar
+    async getRandom() {
+        try {
+        const listado = await this.getAll();
+        return listado[Math.floor(Math.random() * listado.length)];
+        } catch (error) {
+            console.log('Error en getRandom', error);
+        }
+    }
  
 }
 
